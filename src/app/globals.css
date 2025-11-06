@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+body {
+  padding:0;
+  box-sizing:border-box;
+  margin:0;
+}
+
+@media (max-width: 640px) {
+  .mesh-blob {
+    max-width: 200px !important;
+    max-height: 200px !important;
+  }
+}
+
