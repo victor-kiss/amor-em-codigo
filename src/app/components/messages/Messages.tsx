@@ -25,9 +25,9 @@ const colors = {
 export default function Message({ day, messages }: MessageProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4, delay: 0.1 }}
+      initial={{ opacity: 0, y: 20 }} // Alterado
+      whileInView={{ opacity: 1, y: 0 }} // Alterado
+      transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }} // Alterado
       className="relative max-w-3xl w-full bg-[rgba(0,0,0,0.2)] backdrop-blur-xs border-2 border-[rgba(255,255,255,0.2)] p-4 sm:p-6 rounded-lg"
     >
       {/* Prendedores superiores */}

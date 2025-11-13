@@ -25,13 +25,13 @@ export default function Carta() {
   }
 
   return (
-    <div className="relative flex flex-col justify-center items-center text-white min-h-screen overflow-x-hidden relative">
+    <div className="relative flex flex-col justify-center items-center text-white min-h-screen overflow-x-hidden">
 
       <section className="relative w-full h-screen p-6 flex flex-col items-center justify-center overflow-hidden">
         <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          initial={{ opacity: 0, y: 20 }} // Alterado
+          whileInView={{ opacity: 1, y: 0 }} // Alterado
+          transition={{ type: "spring", stiffness: 50, damping: 20 }} // Alterado
         >
           <div className="bg-[rgba(0,0,0,0.7)] backdrop-blur-sm border border-white/30 p-6 rounded-2xl max-w-3xl w-full sm:w-[70vw] shadow-lg h-[70vh] sm:h-auto overflow-y-auto flex flex-col justify-between">
             
@@ -43,7 +43,7 @@ export default function Carta() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }} // Alterado
                   className={`text-base sm:text-lg leading-relaxed ${
                     currentStep === steps.length - 1 ? "text-right text-gray-400" : ""
                   }`}
@@ -56,20 +56,26 @@ export default function Carta() {
             {/* Botões de navegação */}
             <div className="flex gap-4 mt-6 justify-center align-baseline items-baseline">
               {currentStep > 0 && (
-                <button
+                <motion.button // Alterado
                   onClick={prevStep}
-                  className="px-4 py-2 rounded-lg bg-gray-500/30 hover:bg-gray-500/50 text-white transition  border-1 border-white/20"
+                  whileHover={{ scale: 1.05 }} // Adicionado
+                  whileTap={{ scale: 0.95 }} // Adicionado
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }} // Adicionado
+                  className="px-4 py-2 rounded-lg bg-gray-500/30 hover:bg-gray-500/50 text-white transition  border-1 border-white/20"
                 >
                   Voltar
-                </button>
+                </motion.button>
               )}
               {currentStep < steps.length - 1 ? (
-                <button
+                <motion.button // Alterado
                   onClick={nextStep}
+                  whileHover={{ scale: 1.05 }} // Adicionado
+                  whileTap={{ scale: 0.95 }} // Adicionado
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }} // Adicionado
                   className="px-6 py-2 rounded-lg bg-gray-500/20 hover:bg-pink-700 hover:text-white text-pink-500 font-semibold transition border-1 border-white/20"
                 >
                   Próximo
-                </button>
+                </motion.button>
               ) : (
                 <p className="text-pink-400 font-semibold block ">Fim da carta 💌</p>
               )}

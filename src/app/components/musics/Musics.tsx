@@ -23,9 +23,9 @@ export default function MusicsComponent() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4 }}
+      initial={{ opacity: 0, y: 20 }} // Alterado
+      whileInView={{ opacity: 1, y: 0 }} // Alterado
+      transition={{ type: "spring", stiffness: 100, damping: 20,delay:0.1 }} // Alterado
       className="relative w-full sm:min-h-[28rem] sm:w-[50vw] md:w-[70vw] xl:w-[50vw] bg-[rgba(0,0,0,0.2)] backdrop-blur-xs border-2 border-[rgba(255,255,255,0.2)] rounded-lg p-4 sm:p-10 flex flex-col gap-6 m-3"
     >
       {/* Título */}
@@ -45,6 +45,7 @@ export default function MusicsComponent() {
           <motion.div
             whileInView={{ rotate: 360 }}
             transition={{ repeat: Infinity, ease: "linear", duration: 7 }}
+            viewport={{ once: true }} // Adicionado
             className="relative w-32 h-32 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full bg-center bg-cover drop-shadow-xl"
             style={{ backgroundImage: `url("${music.cover}")` }}
           >
@@ -71,32 +72,41 @@ export default function MusicsComponent() {
           ))}
 
           <div className="my-2 sm:my-4">
-            <button
+            <motion.button // Alterado
               onClick={openSpotify}
               aria-label="Ouvir no Spotify"
-              className="inline-flex items-center bg-[#1DB954]  hover:shadow-[0_0_15px_#1DB954] transition-colors duration-300 ease-in-out px-3 py-2 sm:px-5 sm:py-2 rounded-full shadow-lg text-black font-bold text-sm sm:text-lg"
+              whileHover={{ scale: 1.05 }} // Adicionado
+              whileTap={{ scale: 0.95 }} // Adicionado
+              transition={{ type: "spring", stiffness: 300, damping: 15 }} // Adicionado
+              className="inline-flex items-center bg-[#1DB954]  hover:shadow-[0_0_15px_#1DB954] transition-colors duration-300 ease-in-out px-3 py-2 sm:px-5 sm:py-2 rounded-full shadow-lg text-black font-bold text-sm sm:text-lg"
             >
               <i className="bi bi-spotify mr-2 text-black text-lg sm:text-xl"></i>
               Ouvir
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
 
       {/* Botões Carrossel */}
-      <button
+      <motion.button // Alterado
         onClick={prevMusic}
+        whileHover={{ scale: 1.15 }} // Adicionado
+        whileTap={{ scale: 0.9 }} // Adicionado
+        transition={{ type: "spring", stiffness: 300, damping: 15 }} // Adicionado
         className="absolute top-1/2 left-2 sm:left-4 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-1 sm:p-3 rounded-full shadow-lg"
       >
         <i className="bi bi-chevron-left text-lg sm:text-2xl"></i>
-      </button>
+      </motion.button>
 
-      <button
+      <motion.button // Alterado
         onClick={nextMusic}
+        whileHover={{ scale: 1.15 }} // Adicionado
+        whileTap={{ scale: 0.9 }} // Adicionado
+        transition={{ type: "spring", stiffness: 300, damping: 15 }} // Adicionado
         className="absolute top-1/2 right-2 sm:right-4 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-1 sm:p-3 rounded-full shadow-lg"
       >
         <i className="bi bi-chevron-right text-lg sm:text-2xl"></i>
-      </button>
+      </motion.button>
     </motion.div>
   )
 }
