@@ -13,7 +13,6 @@ interface CarouselProps {
 
 export default function Carousel({ images, options }: CarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel(options ?? { loop: true, align: "center" });
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollPrev = useCallback(() => {
     emblaApi?.scrollPrev();
